@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { SubjectInfo, SubjectId } from '../types';
-import graceUploadedPhoto from '../assets/images/grace_uploaded_wa0163.jpg';
-import graceSittingPhoto from '../assets/images/grace_sitting_cropped.jpg';
+import graceLandingPhoto from '../assets/images/grace_ehi_landing.png';
 import {
   TrendingUp,
   Calculator,
@@ -15,7 +14,6 @@ import {
   Lightbulb,
   GraduationCap,
   Maximize2,
-  Download
 } from 'lucide-react';
 
 interface HeroHomeProps {
@@ -29,14 +27,10 @@ export const HeroHome: React.FC<HeroHomeProps> = ({
   onSelectSubject,
   onOpenTips
 }) => {
-  const [photoMode, setPhotoMode] = useState<'sitting' | 'full'>('sitting');
   const [showFullPreview, setShowFullPreview] = useState<boolean>(false);
 
   const eco = subjects.economics;
   const acc = subjects.accounting;
-
-  const currentDisplayPhoto =
-    photoMode === 'sitting' ? graceSittingPhoto : graceUploadedPhoto;
 
   return (
     <div className="space-y-12 pb-16">
@@ -124,13 +118,11 @@ export const HeroHome: React.FC<HeroHomeProps> = ({
             <div className="lg:col-span-5 flex flex-col items-center">
               <div className="relative w-full max-w-sm rounded-3xl overflow-hidden border border-purple-200/90 shadow-2xl bg-gradient-to-br from-purple-900 via-purple-950 to-indigo-950 p-1.5 group">
                 <div
-                  className={`relative ${
-                    photoMode === 'sitting' ? 'aspect-[3/4]' : 'aspect-[2/3]'
-                  } rounded-[22px] overflow-hidden bg-purple-900 transition-all duration-300`}
+                  className="relative aspect-[2/3] rounded-[22px] overflow-hidden bg-purple-900 transition-all duration-300"
                 >
                   {/* Photo of Grace */}
                   <img
-                    src={currentDisplayPhoto}
+                    src={graceLandingPhoto}
                     alt="Grace Ehi at College of Education, Akwanga"
                     className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
                     referrerPolicy="no-referrer"
@@ -177,31 +169,6 @@ export const HeroHome: React.FC<HeroHomeProps> = ({
                 </div>
               </div>
 
-              {/* Picture View Mode Controls */}
-              <div className="mt-3 flex items-center gap-2 p-1 bg-white/80 backdrop-blur-md rounded-xl border border-purple-100 shadow-xs">
-                <button
-                  type="button"
-                  onClick={() => setPhotoMode('sitting')}
-                  className={`px-3 py-1 text-xs font-semibold rounded-lg transition-colors cursor-pointer ${
-                    photoMode === 'sitting'
-                      ? 'bg-purple-900 text-white shadow-xs'
-                      : 'text-slate-600 hover:text-purple-900'
-                  }`}
-                >
-                  Sitting Photo
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setPhotoMode('full')}
-                  className={`px-3 py-1 text-xs font-semibold rounded-lg transition-colors cursor-pointer ${
-                    photoMode === 'full'
-                      ? 'bg-purple-900 text-white shadow-xs'
-                      : 'text-slate-600 hover:text-purple-900'
-                  }`}
-                >
-                  Full Collage View
-                </button>
-              </div>
             </div>
           </div>
         </div>
@@ -371,7 +338,7 @@ export const HeroHome: React.FC<HeroHomeProps> = ({
             </button>
             <div className="rounded-2xl overflow-hidden max-h-[80vh] flex items-center justify-center bg-purple-950">
               <img
-                src={graceUploadedPhoto}
+                src={graceLandingPhoto}
                 alt="Grace Ehi full photo"
                 className="max-h-[80vh] w-auto object-contain"
               />
@@ -396,16 +363,6 @@ export const HeroHome: React.FC<HeroHomeProps> = ({
         <p className="text-[11px] text-slate-400">
           College of Education, Akwanga · Economics & Accounting CBT Practice
         </p>
-        <div className="pt-2">
-          <a
-            href="/grace-ehi-cbt.zip"
-            download="grace-ehi-cbt.zip"
-            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold text-purple-900 hover:text-purple-950 bg-purple-50 hover:bg-purple-100 border border-purple-200/80 rounded-xl transition-all shadow-xs cursor-pointer"
-          >
-            <Download className="w-3.5 h-3.5" />
-            <span>Download Project ZIP (Ready for GitHub)</span>
-          </a>
-        </div>
       </footer>
     </div>
   );
